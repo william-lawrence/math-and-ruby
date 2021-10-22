@@ -1,18 +1,11 @@
 # frozen_string_literal: true
 
-require 'benchmark'
-require 'rspec/autorun'
+require '../problem_base'
 
 # https://projecteuler.net/problem=1
-class ProblemOneDeclarative
-  class << self
-    def result
-      [*1...1000].select! { |n| (n % 3).zero? || (n % 5).zero? }.sum
-    end
-
-    def benchmark
-      Benchmark.measure { result }.total
-    end
+class ProblemOneDeclarative < ProblemBase
+  def self.result
+    [*1...1000].select! { |n| (n % 3).zero? || (n % 5).zero? }.sum
   end
 end
 
