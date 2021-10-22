@@ -22,3 +22,7 @@ irb(main):001:0> ProblemOneDeclarative.result
 irb(main):002:0> ProblemOneDeclarative.benchmark
 => 0.00010199999999997711
 ```
+
+## Running The Tests
+
+Each solution is unit tested. To run the tests, navigate to the solution file that you want to test, and run `ruby problem_file.rb`. If you don't have rspec installed, you need to run `gem install rspec`.
