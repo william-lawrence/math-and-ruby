@@ -1,4 +1,4 @@
-# Math and Ruby: Problem 1
+# Math and Ruby: Project Euler Problem 1
 
 ## Introduction
 
