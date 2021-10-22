@@ -14,3 +14,9 @@ describe ProblemOneDeclarative, '.result' do
     expect(ProblemOneDeclarative.result).to eq(233_168)
   end
 end
+
+describe ProblemOneDeclarative, '.benchmark' do
+  it 'reports the result in < 1 second' do
+    expect(ProblemOneDeclarative.benchmark).to be < 1
+  end
+end

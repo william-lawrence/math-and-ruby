@@ -26,3 +26,9 @@ describe ProblemOneIterative, '.result' do
     expect(ProblemOneIterative.result).to eq(233168)
   end
 end
+
+describe ProblemOneIterative, '.benchmark' do
+  it 'reports result in < 1 second' do
+    expect(ProblemOneIterative.benchmark).to be < 1
+  end
+end
