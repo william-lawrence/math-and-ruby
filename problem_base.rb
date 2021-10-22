@@ -3,6 +3,7 @@
 require 'benchmark'
 require 'rspec/autorun'
 
+# Base class used for each problem. Gives us benchmarking for free.
 class ProblemBase
   class << self
     def result
