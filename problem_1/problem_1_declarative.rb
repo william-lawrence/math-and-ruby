@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'benchmark'
+require 'rspec/autorun'
 
 # https://projecteuler.net/problem=1
 class ProblemOneDeclarative
@@ -12,5 +13,11 @@ class ProblemOneDeclarative
     def benchmark
       Benchmark.measure { result }.total
     end
+  end
+end
+
+describe ProblemOneDeclarative, '.result' do
+  it 'returns 233168' do
+    expect(ProblemOneDeclarative.result).to eq(233_168)
   end
 end

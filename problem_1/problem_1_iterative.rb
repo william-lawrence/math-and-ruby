@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'benchmark'
+require 'rspec/autorun'
 
 class ProblemOneIterative
    class << self
@@ -24,5 +25,11 @@ class ProblemOneIterative
       Benchmark.measure { result }
     end
 
+  end
+end
+
+describe ProblemOneIterative, '.result' do
+  it 'returns 233168' do
+    expect(ProblemOneIterative.result).to eq(233168)
   end
 end
