@@ -2,7 +2,7 @@
 
 ## Introduction
 
-I decided that I am going to tackle all of the project euler problems. One, it's going to make sure I don't forget my math. Two it's going to make sure I stay up to date on my ruby.
+I decided that I am going to tackle all of the project euler problems. One, it's going to make sure I don't forget my math. Two, it's going to make sure I stay up to date on my ruby.
 
 ## Running a solution
 
