@@ -15,6 +15,10 @@ The Following Problem was taken from [Project Euler](https://projecteuler.net/pr
 
 This is a great problem because it takes a classic problem (FizzBuzz) and adds an extra layer too it. More importantly, it has a single integer result as opposed to an array of integers and strings.
 
+## Breaking it down.
+
+This problem is basically saying that we need to do a few things. First, we need to find all the numbers from 1-999 that are multiples of 3 or 5. Then, we need to sum all those numbers together. This is a pretty straightforward problem. Let's see what we can do.
+
 ## Attempt One: Iterative Approach
 
 I remember the first time I was asked to look at FizzBuzz, and the sort of approach that I would take when I first started coding. It would have looked something like this.
@@ -44,7 +48,7 @@ So the iterative method gets us the correct answer, but can we get there with le
 [*1...1000].select! { |n| (n % 3).zero? || (n % 5).zero? }.sum
 ```
 
-So this is doing a lot so let's break it down. First we are using `*` and a range to create all the values that we need to look at, 1-999. Then we are creating new array by selecting all the value that are multiples of 3 or 5 from the original array. Finally, we find the sum of the newly created array to get our result. The result of this method is `233168`, which is  the same as the above method. 
+So this is doing a lot so let's break it down. First we are using `*` and a range to create all the values that we need to look at, 1-999. Then we are creating new array by selecting all the value that are multiples of 3 or 5 from the original array. Finally, we find the sum of the newly created array to get our result. The result of this method is `233168`, which is the same as the above method. 
 
 # Comparing Methods
 
