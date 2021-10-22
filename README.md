@@ -1,1 +1,1 @@
-# math-and_ruby
+# Math And Ruby
