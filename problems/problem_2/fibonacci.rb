@@ -4,30 +4,36 @@ require 'rspec/autorun'
 
 # Class that generates nth fibonacci term and array of fibonacci numbers.
 class Fibonacci
-  class << self
-    def array(n)
-      fibonacci_array = Array.new
+  attr_accessor :cache
 
-      [*0..n].each { |i| fibonacci_array << nth_term_recursive(i) }
+  def initialize
+    @cache = { 0 => 0, 1 => 1 }
+  end
 
-      fibonacci_array
+  def self.binets_formula(n)
+    sqrt5 = Math.sqrt(5)
+
+    ((((1 + sqrt5)**n) - ((1 - sqrt5)**n)) / ((2**n) * sqrt5)).round
+  end
+
+  def self.nth_term_recursive(n)
+    return n if (0..1).include? n
+
+    (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
+  end
+
+  def nth_term_iterative(n)
+    return @cache[n] if @cache.keys.include?(n)
+
+    while @cache.count <= n
+      next_term = @cache[@cache.count - 1] + @cache[@cache.count - 2]
+
+      next_key = @cache.count
+
+      @cache.merge!(next_key => next_term)
     end
 
-    def binets_formula(n)
-      sqrt5 = Math.sqrt(5)
-
-      ((((1 + sqrt5)**n) - ((1 - sqrt5)**n)) / ((2**n) * sqrt5)).round
-    end
-
-    def nth_term_recursive(n)
-      return n if (0..1).include? n
-
-      (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
-    end
-
-    def nth_term_iterative
-      
-    end
+    @cache[n]
   end
 end
 
@@ -35,15 +41,21 @@ describe Fibonacci, '.nth_term_recursive' do
   it 'returns the nth fibonacci number' do
     expect(Fibonacci.nth_term_recursive(0)).to eq(0)
     expect(Fibonacci.nth_term_recursive(1)).to eq(1)
+    expect(Fibonacci.nth_term_recursive(2)).to eq(1)
+    expect(Fibonacci.nth_term_recursive(3)).to eq(2)
     expect(Fibonacci.nth_term_recursive(10)).to eq(55)
   end
 end
 
 describe Fibonacci, '.nth_term_iterative' do
+  fibonacci = Fibonacci.new
+
   it 'returns the nth fibonacci number' do
-    expect(Fibonacci.nth_term_recursive(0)).to eq(0)
-    expect(Fibonacci.nth_term_recursive(1)).to eq(1)
-    expect(Fibonacci.nth_term_recursive(10)).to eq(55)
+    expect(fibonacci.nth_term_iterative(0)).to eq(0)
+    expect(fibonacci.nth_term_iterative(1)).to eq(1)
+    expect(fibonacci.nth_term_iterative(2)).to eq(1)
+    expect(fibonacci.nth_term_iterative(3)).to eq(2)
+    expect(fibonacci.nth_term_iterative(10)).to eq(55)
   end
 end
 
@@ -52,11 +64,5 @@ describe Fibonacci, '.binets_formula' do
     expect(Fibonacci.binets_formula(0)).to eq(0)
     expect(Fibonacci.binets_formula(1)).to eq(1)
     expect(Fibonacci.binets_formula(10)).to eq(55)
-  end
-end
-
-describe Fibonacci, '.array' do
-  it 'returns an array of fibonacci numbers up to the nth term' do
-    expect(Fibonacci.array(10)).to eq([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55])
   end
 end
