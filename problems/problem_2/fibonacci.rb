@@ -56,6 +56,7 @@ describe Fibonacci, '.nth_term_iterative' do
     expect(fibonacci.nth_term_iterative(2)).to eq(1)
     expect(fibonacci.nth_term_iterative(3)).to eq(2)
     expect(fibonacci.nth_term_iterative(10)).to eq(55)
+    expect(fibonacci.nth_term_iterative(300)).to eq(222232244629420445529739893461909967206666939096499764990979600)
   end
 end
 
