@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This is the first post that I am writing in a while, and it's mostly because I wanted to start working through all the problems on [Project Euler](https://projecteuler.net/). I wanted to do this for a few reasons. First, they are hard problems, so they are good way to practice. Second, they let me keep my maths skills sharp. Third, They ley me practice my ruby.
+This is the first post that I am writing in a while, and it's mostly because I wanted to start working through all the problems on [Project Euler](https://projecteuler.net/). I wanted to do this for a few reasons. First, they are hard problems, so it's good practice. It'll help me stay on top of my math and my ruby.
 
-This first problem is fun, but we don't get a chance to look at clever mathematical approaches. But we do get to see some of the methods that we have in ruby. 
+This first problem is fun, but there aren't that many clever mathematical approaches. But we do see some of the methods that we can use in ruby. 
 
 ## Problem Statement
 
@@ -18,6 +18,10 @@ This is a great problem because it takes a classic problem (FizzBuzz) and adds a
 ## Breaking it down.
 
 This problem is basically saying that we need to do a few things. First, we need to find all the numbers from 1-999 that are multiples of 3 or 5. Then, we need to sum all those numbers together. This is a pretty straightforward problem. Let's see what we can do.
+
+## Some Math
+
+There isn't a lot of cool math that we can use here, but there is a cool property for numbers that are multiples of three. For a given integer, if the sum of the digits are divisible by 3, the integer itself is also divisible by 3. 
 
 ## Attempt One: Iterative Approach
 
