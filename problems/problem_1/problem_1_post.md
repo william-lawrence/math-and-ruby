@@ -17,7 +17,7 @@ This is a great problem because it takes a classic problem (FizzBuzz) and adds a
 
 ## Breaking it down.
 
-This problem is basically saying that we need to do a few things. First, we need to find all the numbers from 1-999 that are multiples of 3 or 5. Then, we need to sum all those numbers together. This is a pretty straightforward problem. Let's see what we can do.
+This problem is basically saying that we need to do a few things. First, we need to find all the numbers from 1-999 that are multiples of 3 or 5. Then, we need to sum all those numbers together. Pretty straightforward. Let's see what we can do.
 
 ## Some Math
 
