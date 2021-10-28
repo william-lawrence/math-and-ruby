@@ -10,24 +10,11 @@ class Fibonacci
     @cache = { 0 => 0, 1 => 1 }
   end
 
-  def self.binets_formula(n)
-    sqrt5 = Math.sqrt(5)
-
-    ((((1 + sqrt5)**n) - ((1 - sqrt5)**n)) / ((2**n) * sqrt5)).round
-  end
-
-  def self.nth_term_recursive(n)
-    return n if (0..1).include? n
-
-    (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
-  end
-
-  def nth_term_iterative(n)
+  def nth_term_with_cache(n)
     return @cache[n] if @cache.keys.include?(n)
 
     while @cache.count <= n
       next_term = @cache[@cache.count - 1] + @cache[@cache.count - 2]
-
       next_key = @cache.count
 
       @cache.merge!(next_key => next_term)
@@ -35,6 +22,37 @@ class Fibonacci
 
     @cache[n]
   end
+
+  class << self
+    def binets_formula(n)
+      return "Binet's Formula is not accurate for n > 70" if n > 70
+
+      sqrt5 = Math.sqrt(5)
+
+      ((((1 + sqrt5)**n) - ((1 - sqrt5)**n)) / ((2**n) * sqrt5)).round
+    end
+
+    def nth_term_recursive(n)
+      return n if (0..1).include? n
+
+      (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
+    end
+
+    def nth_term(n)
+      cache = { 0 => 0, 1 => 1 }
+      return cache[n] if cache.keys.include?(n)
+
+      while cache.count <= n
+        next_term = cache[cache.count - 1] + cache[cache.count - 2]
+        next_key = cache.count
+
+        cache.merge!(next_key => next_term)
+      end
+
+      cache[n]
+    end
+  end
+
 end
 
 describe Fibonacci, '.nth_term_recursive' do
@@ -47,16 +65,14 @@ describe Fibonacci, '.nth_term_recursive' do
   end
 end
 
-describe Fibonacci, '.nth_term_iterative' do
-  fibonacci = Fibonacci.new
-
+describe Fibonacci, '.nth_term' do
   it 'returns the nth fibonacci number' do
-    expect(fibonacci.nth_term_iterative(0)).to eq(0)
-    expect(fibonacci.nth_term_iterative(1)).to eq(1)
-    expect(fibonacci.nth_term_iterative(2)).to eq(1)
-    expect(fibonacci.nth_term_iterative(3)).to eq(2)
-    expect(fibonacci.nth_term_iterative(10)).to eq(55)
-    expect(fibonacci.nth_term_iterative(300)).to eq(222232244629420445529739893461909967206666939096499764990979600)
+    expect(Fibonacci.nth_term(0)).to eq(0)
+    expect(Fibonacci.nth_term(1)).to eq(1)
+    expect(Fibonacci.nth_term(2)).to eq(1)
+    expect(Fibonacci.nth_term(3)).to eq(2)
+    expect(Fibonacci.nth_term(10)).to eq(55)
+    expect(Fibonacci.nth_term(300)).to eq(222_232_244_629_420_445_529_739_893_461_909_967_206_666_939_096_499_764_990_979_600)
   end
 end
 
@@ -65,5 +81,10 @@ describe Fibonacci, '.binets_formula' do
     expect(Fibonacci.binets_formula(0)).to eq(0)
     expect(Fibonacci.binets_formula(1)).to eq(1)
     expect(Fibonacci.binets_formula(10)).to eq(55)
+    expect(Fibonacci.binets_formula(71)).to eq("Binet's Formula is not accurate for n > 70")
+  end
+
+  it 'returns different values for binet and iterative results when n = 70' do
+    expect(Fibonacci.binets_formula(70)).to eq(Fibonacci.nth_term(70))
   end
 end
