@@ -33,6 +33,8 @@ class Fibonacci
     end
 
     def nth_term_recursive(n)
+      @hits += 1
+      puts @hits
       return n if (0..1).include? n
 
       (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
@@ -52,7 +54,6 @@ class Fibonacci
       cache[n]
     end
   end
-
 end
 
 describe Fibonacci, '.nth_term_recursive' do
