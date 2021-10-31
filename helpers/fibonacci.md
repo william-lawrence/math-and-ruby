@@ -4,7 +4,7 @@
 
 This is going to be a little interlude between the the Project Euler problems because the next problem has to do with Fibonacci numbers! 
 
-The Fibonacci sequence is generated with two initial numbers, usually 0 and 1, and then adding those two terms to create the next term in the sequence. The sequence continues to infinity by adding the two previous terms in the sequence. They come up in the Project Euler problems pretty frequently because they are mathematically interesting and present some performance issues when generating them.
+The Fibonacci sequence is generated with two initial integers, usually 0 and 1, and then adding those two terms to create the next term in the sequence. The sequence continues to infinity by adding the two previous terms in the sequence. They come up in the Project Euler problems pretty frequently because they are mathematically interesting and present some performance issues when generating them.
 
 This post is going to talk about a three ways to generate Fibonacci numbers, and what the different tradeoffs 
 
@@ -44,7 +44,7 @@ def nth_term(n)
 end
 ```
 
-This method will yield the same results. We start with our base case, and then generate a hash where the key is the index of the term in the sequence, and the key is the value of the term. By using a hash, we can store the terms of the sequence that are needed to generate the term that we want. This gives us a method that operates in `O(n)` time, which is a big improvement. If we want, we could even memoize the results so that we could find terms that were already calculated.
+This method will yield the same results. We start with our base case, and then generate a hash where the key is the index of the term in the sequence, and the value is the value of the term. By using a hash, we can store the terms of the sequence that are needed to generate the term that we want. This gives us a method that operates in `O(n)` time, which is a big improvement. If we want, we could even memoize the results so that we could find terms that were already calculated.
 
 ## Method 3: Binet's Formula
 
@@ -80,3 +80,5 @@ However, for the terms that are accurate, we can get them in constant time, so t
 ## Conclusion
 
 For problems that use the Fibonacci sequence, I will likely use the iterative approach since that has a good balance between speed and accuracy, but something tells me that there are even more complex ways to get large Fibonacci numbers in a faster time than `O(n)`.
+
+You can checkout the source code for this post [on my Github](https://github.com/william-lawrence/math-and-ruby/blob/main/helpers/fibonacci.rb).
