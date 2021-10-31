@@ -32,12 +32,6 @@ class Fibonacci
       ((((1 + sqrt5)**n) - ((1 - sqrt5)**n)) / ((2**n) * sqrt5)).round
     end
 
-    def nth_term_recursive(n)
-      return n if (0..1).include? n
-
-      (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
-    end
-
     def nth_term(n)
       cache = { 0 => 0, 1 => 1 }
       return cache[n] if cache.keys.include?(n)
@@ -50,6 +44,12 @@ class Fibonacci
       end
 
       cache[n]
+    end
+
+    def nth_term_recursive(n)
+      return n if (0..1).include? n
+
+      (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
     end
   end
 end
