@@ -4,23 +4,23 @@ require 'rspec/autorun'
 
 # Class that generates nth fibonacci term and array of fibonacci numbers.
 class Fibonacci
-  attr_accessor :cache
+  attr_accessor :fibonacci_terms
 
   def initialize
-    @cache = { 0 => 0, 1 => 1 }
+    @fibonacci_terms = { 0 => 0, 1 => 1 }
   end
 
   def nth_term(n)
-    return @cache[n] if @cache.keys.include?(n)
+    return @fibonacci_terms[n] if @fibonacci_terms.keys.include?(n)
 
-    while @cache.count <= n
-      next_term = @cache[@cache.count - 1] + @cache[@cache.count - 2]
-      next_key = @cache.count
+    while @fibonacci_terms.count <= n
+      next_term = @fibonacci_terms[@fibonacci_terms.count - 1] + @fibonacci_terms[@fibonacci_terms.count - 2]
+      next_key = @fibonacci_terms.count
 
-      @cache.merge!(next_key => next_term)
+      @fibonacci_terms.merge!(next_key => next_term)
     end
 
-    @cache[n]
+    @fibonacci_terms[n]
   end
 
   class << self
