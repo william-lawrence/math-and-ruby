@@ -10,7 +10,7 @@ class Fibonacci
     @cache = { 0 => 0, 1 => 1 }
   end
 
-  def nth_term_with_cache(n)
+  def nth_term(n)
     return @cache[n] if @cache.keys.include?(n)
 
     while @cache.count <= n
@@ -33,8 +33,6 @@ class Fibonacci
     end
 
     def nth_term_recursive(n)
-      @hits += 1
-      puts @hits
       return n if (0..1).include? n
 
       (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
@@ -74,6 +72,19 @@ describe Fibonacci, '.nth_term' do
     expect(Fibonacci.nth_term(3)).to eq(2)
     expect(Fibonacci.nth_term(10)).to eq(55)
     expect(Fibonacci.nth_term(300)).to eq(222_232_244_629_420_445_529_739_893_461_909_967_206_666_939_096_499_764_990_979_600)
+  end
+end
+
+describe Fibonacci, '#nth_term' do
+  fibonacci = Fibonacci.new
+
+  it 'returns the nth fibonacci number' do
+    expect(fibonacci.nth_term(0)).to eq(0)
+    expect(fibonacci.nth_term(1)).to eq(1)
+    expect(fibonacci.nth_term(2)).to eq(1)
+    expect(fibonacci.nth_term(3)).to eq(2)
+    expect(fibonacci.nth_term(10)).to eq(55)
+    expect(fibonacci.nth_term(300)).to eq(222_232_244_629_420_445_529_739_893_461_909_967_206_666_939_096_499_764_990_979_600)
   end
 end
 
