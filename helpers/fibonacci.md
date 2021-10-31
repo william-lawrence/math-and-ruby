@@ -1,12 +1,12 @@
-# Fibonacci
+# Generating Fibonacci Numbers
 
 ## Introduction
 
 This is going to be a little interlude between the the Project Euler problems because the next problem has to do with Fibonacci numbers! 
 
-The Fibonacci sequence is generated with two initial numbers, usually 0 and 1, and then adding those two terms to create the next term in the sequence. The sequence continues to infinity by adding the previous two terms in the sequence. The come up in the Project Euler problems because they are mathematically interesting and they present some performance issue when generating them.
+The Fibonacci sequence is generated with two initial numbers, usually 0 and 1, and then adding those two terms to create the next term in the sequence. The sequence continues to infinity by adding the two previous terms in the sequence. They come up in the Project Euler problems pretty frequently because they are mathematically interesting and present some performance issues when generating them.
 
-This post is going to talk about a three ways to generate Fibonacci numbers, and what the tradeoffs are. 
+This post is going to talk about a three ways to generate Fibonacci numbers, and what the different tradeoffs 
 
 ## Method 1: Recursion
 
@@ -44,11 +44,11 @@ def nth_term(n)
 end
 ```
 
-This method will give the sam results. We start with our base case, and then generate a hash where the key is the index of the term in the sequence, and the key is the value of the term. By using this hash, we can store the terms of the sequence that are needed to generate the term that we want. This gives us a method that operates in `O(n)` time, which is a big improvement. If we want, we could even memoize the results so that we could find terms that we have already calculated.
+This method will yield the same results. We start with our base case, and then generate a hash where the key is the index of the term in the sequence, and the key is the value of the term. By using a hash, we can store the terms of the sequence that are needed to generate the term that we want. This gives us a method that operates in `O(n)` time, which is a big improvement. If we want, we could even memoize the results so that we could find terms that were already calculated.
 
 ## Method 3: Binet's Formula
 
-There is actually a way to directly calculate the terms in the fibonacci sequence, but there is a problem. It can only be used in limited cases (at least on a computer). We can use [Binet's Formula](https://mathworld.wolfram.com/BinetsFibonacciNumberFormula.html). However, because of the rounding errors that occur when we take square roots, this method breaks down. Let's take a look:
+There is actually a way to directly calculate the terms in the Fibonacci sequence, but there is a problem. It can only be used in limited cases (at least on a computer). We can use [Binet's Formula](https://mathworld.wolfram.com/BinetsFibonacciNumberFormula.html). However, because of the rounding errors that occur when we take square roots, this method breaks down. Let's take a look:
 
 ```ruby
 def binets_formula
@@ -60,7 +60,7 @@ def binets_formula
 end
 ```
 
-We can see that I output a string when we are looking at the terms greater than 70. Lets compare what happen when we use Binet's Formula against our iterative fort the 70th and 71st terms of the Fibonacci sequence.
+We can see that I output a string when we are looking at the terms greater than 70. Lets compare what happen when we use Binet's Formula against our iterative method for the 70th and 71st terms of the Fibonacci sequence.
 
 ```
 irb(main):001:0> Fibonacci.nth_term(70)
