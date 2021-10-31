@@ -25,7 +25,7 @@ class Fibonacci
 
   class << self
     def binets_formula(n)
-      return "Binet's Formula is not accurate for n > 70" if n > 70
+      puts "Binet's Formula is not accurate for n > 70" if n > 70
 
       sqrt5 = Math.sqrt(5)
 
@@ -93,10 +93,16 @@ describe Fibonacci, '.binets_formula' do
     expect(Fibonacci.binets_formula(0)).to eq(0)
     expect(Fibonacci.binets_formula(1)).to eq(1)
     expect(Fibonacci.binets_formula(10)).to eq(55)
-    expect(Fibonacci.binets_formula(71)).to eq("Binet's Formula is not accurate for n > 70")
+    expect(Fibonacci.binets_formula(70)).to eq(190392490709135)
   end
 
-  it 'returns different values for binet and iterative results when n = 70' do
-    expect(Fibonacci.binets_formula(70)).to eq(Fibonacci.nth_term(70))
+  it 'returns different values for binet and iterative results when n > 70' do
+    expect(Fibonacci.binets_formula(71)).not_to eq(Fibonacci.nth_term(71))
+  end
+
+  it 'prints a warning if n > 70' do
+    expect do
+      Fibonacci.binets_formula(71)
+    end.to output("Binet's Formula is not accurate for n > 70\n").to_stdout
   end
 end
