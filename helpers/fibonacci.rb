@@ -33,21 +33,21 @@ class Fibonacci
     end
 
     def nth_term(n)
-      cache = { 0 => 0, 1 => 1 }
-      return cache[n] if cache.keys.include?(n)
+      fibonacci_terms = { 0 => 0, 1 => 1 }
+      return fibonacci_terms[n] if fibonacci_terms.keys.include?(n)
 
-      while cache.count <= n
-        next_term = cache[cache.count - 1] + cache[cache.count - 2]
-        next_key = cache.count
+      while fibonacci_terms.count <= n
+        next_term = fibonacci_terms[fibonacci_terms.count - 1] + fibonacci_terms[fibonacci_terms.count - 2]
+        next_key = fibonacci_terms.count
 
-        cache.merge!(next_key => next_term)
+        fibonacci_terms.merge!(next_key => next_term)
       end
 
-      cache[n]
+      fibonacci_terms[n]
     end
 
     def nth_term_recursive(n)
-      return n if (0..1).include? n
+      return n if (0..1).include?(n)
 
       (nth_term_recursive(n - 1) + nth_term_recursive(n - 2))
     end
