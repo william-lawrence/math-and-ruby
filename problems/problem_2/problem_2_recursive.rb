@@ -32,7 +32,7 @@ describe ProblemTwoRecursive, '.result' do
 end
 
 describe ProblemTwoRecursive, '.benchmark' do
-  it 'returns 4,613,732' do
+  it 'returns result in under 10 seconds' do
     expect(ProblemTwoRecursive.benchmark).to be < 10
   end
 end
