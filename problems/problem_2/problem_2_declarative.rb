@@ -11,7 +11,7 @@ class ProblemTwoDeclarative < ProblemBase
     sum = 0
 
     while fibonacci(n) < MAX_VALUE
-      sum += fibonacci(n) if fibonacci(n).even?
+      sum += fibonacci(n) if fibonacci(n) % 2 == 0
       n += 1
     end
 
